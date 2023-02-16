@@ -1,4 +1,5 @@
 import express from 'express';
+<<<<<<< HEAD
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 
@@ -12,10 +13,16 @@ const app = express();
 
 app.use(express.json());
 
+=======
+
+const app = express();
+
+>>>>>>> master
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+<<<<<<< HEAD
 app.post('/auth/login', (req, res) => {
     console.log(req.body)
 
@@ -29,10 +36,16 @@ app.post('/auth/login', (req, res) => {
     });
 });
 
+=======
+>>>>>>> master
 app.listen(4444, (err) => {
     if (err) {
         return console.log(err);
     }
 
     console.log('Server OK');
+<<<<<<< HEAD
 });
+=======
+})
+>>>>>>> master
