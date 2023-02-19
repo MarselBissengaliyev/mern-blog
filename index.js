@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 
 import { registerValidation, loginValidation, postCreateValidation } from './validation.js';
 
-import { checkAuth, handleValidationErrors } from './utils/index'
+import { checkAuth, handleValidationErrors } from './utils/index.js'
 
 import { UserController, PostController } from './controllers/index.js';
 
