@@ -1,5 +1,6 @@
 import express from 'express';
 import multer from 'multer';
+import cors from 'cors';
 
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
@@ -31,6 +32,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.use(express.json());
+app.use(cors({
+    origin: process.env.CLIENT_URL
+}));
 app.use('/uploads', express.static('uploads'));
 
 app.post('/auth/login', loginValidation, handleValidationErrors,  UserController.login)
