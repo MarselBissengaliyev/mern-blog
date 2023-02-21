@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from '../../axios';
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-    const { data } = axios.get('/posts');
+    const { data } = await axios.get('/posts');
     return data;
 });
 
@@ -32,7 +32,7 @@ const postsSlice = createSlice({
         },
         [fetchPosts.rejected]: (state) => {
             state.posts.items = [];
-            state.posts.status = 'loaded';
+            state.posts.status = 'error';
         },
     },
 });
