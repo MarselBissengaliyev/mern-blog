@@ -6,16 +6,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
-import { fetchPosts } from '../redux/slices/posts';
+import { fetchPosts, fetchTags } from '../redux/slices/posts';
 
 export const Home = () => {
   const dispatch = useDispatch();
   const { posts, tags } = useSelector(state => state.posts);
 
   const isPostsLoading = posts.status === 'loading';
+  const isTagsLoading = tags.status === 'loading';
 
   React.useEffect(() => {
     dispatch(fetchPosts());
+    dispatch(fetchTags());
   }, [])
   console.log(isPostsLoading);
   return (
@@ -42,7 +44,7 @@ export const Home = () => {
           ))}
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock items={['react', 'typescript', 'заметки']} isLoading={false} />
+          <TagsBlock items={tags.items} isLoading={false} />
           <CommentsBlock
             items={[
               {
@@ -60,7 +62,7 @@ export const Home = () => {
                 text: 'When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top',
               },
             ]}
-            isLoading={false}
+            isLoading={isTagsLoading}
           />
         </Grid>
       </Grid>
