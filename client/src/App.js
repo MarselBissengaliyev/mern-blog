@@ -14,6 +14,7 @@ function App() {
   React.useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
+  
   return (
     <>
       <Header />
