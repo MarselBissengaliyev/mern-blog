@@ -55,7 +55,7 @@ app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, Post
 app.delete('/posts/:id', checkAuth, PostController.remove);
 app.patch('/posts/:id', checkAuth, postCreateValidation, PostController.update);
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT, (err) => {
     if (err) {
         return console.log(err);
     }
