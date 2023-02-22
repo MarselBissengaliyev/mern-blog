@@ -24,7 +24,7 @@ export const Login = () => {
       email: "test@test.ru",
       password: "123",
     },
-    mode: "onSubmit",
+    mode: "onChange",
   });
 
   const onSubmit =  async (values) => {
@@ -38,10 +38,6 @@ export const Login = () => {
       window.localStorage.setItem('token', data.payload.token);
     } 
   };
-
-  React.useEffect(() => {
-
-  }, [])
 
   if (isAuth) {
     return <Navigate to="/"/>
@@ -70,7 +66,7 @@ export const Login = () => {
           helperText={errors.password?.message}
           {...register("password", { required: "Укажите пароль" })}
         />
-        <Button type="submit" size="large" variant="contained" fullWidth>
+        <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
           Войти
         </Button>
       </form>
