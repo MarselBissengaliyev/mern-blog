@@ -26,12 +26,14 @@ export const FullPost = () => {
     return <Post isLoading={isLoading} />
   }
 
+  console.log(data);
+
   return (
     <>
       <Post
         id={data._id}
         title={data.title}
-        imageUrl={data.imageUrl}
+        imageUrl={process.env.REACT_APP_API_URL + `${data.imageUrl}`}
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
