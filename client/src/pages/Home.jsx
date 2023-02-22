@@ -36,7 +36,7 @@ export const Home = () => {
               title={obj.title}
               imageUrl={obj.imageUrl}
               user={obj.user}
-              createdAt={obj.created_at}
+              createdAt={obj.createdAt}
               viewsCount={obj.viewsCount}
               commentsCount={3}
               tags={obj.tags}
