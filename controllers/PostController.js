@@ -20,6 +20,7 @@ export const getLastTags = async (req, res) => {
 
 export const getAll = async (req, res) => {
     const { sortBy, tag } = req.query;
+    console.log(sortBy);
     try {
         let posts = await PostModel
             .find(tag ? { tags: tag } : {})

@@ -5,11 +5,11 @@ import cors from 'cors';
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
-import { registerValidation, loginValidation, postCreateValidation, commentCreateValidation } from './validation.js';
+import { registerValidation, loginValidation, postCreateValidation } from './validation.js';
 
 import { checkAuth, handleValidationErrors } from './utils/index.js'
 
-import { UserController, PostController, CommentController } from './controllers/index.js';
+import { UserController, PostController } from './controllers/index.js';
 
 dotenv.config()
 
@@ -54,9 +54,6 @@ app.get('/posts/:id', PostController.getOne);
 app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove);
 app.patch('/posts/:id', checkAuth, postCreateValidation, PostController.update);
-
-app.get('/posts/:id/comments', CommentController.getAll);
-app.post('/posts/:id/comments', checkAuth, commentCreateValidation, CommentController.create);
 
 app.listen(process.env.PORT, (err) => {
     if (err) {
