@@ -18,3 +18,7 @@ export const postCreateValidation = [
     body('tags', 'Невверный формат тэгов').optional().isString(),
     body('imageUrl', 'Неверная ссылка на изоображение').optional().isString()
 ];
+
+export const commentCreateValidation = [
+    body('text', 'Введите текст комментария').isLength({ min: 3 }).isString(),
+];

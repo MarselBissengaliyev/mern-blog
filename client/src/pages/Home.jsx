@@ -26,7 +26,6 @@ export const Home = () => {
   }, []);
 
   const handleTabClick = (e) => {
-    console.log(e.target.dataset.value);
     setSortBy(e.target.dataset.value);
   };
 
