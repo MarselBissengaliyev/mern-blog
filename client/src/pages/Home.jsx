@@ -33,8 +33,6 @@ export const Home = () => {
     localStorage.setItem("sortPostsBy", sortBy);
     dispatch(fetchPosts({sortBy}));
   }, [sortBy]);
-
-  console.log(posts.items);
   return (
     <>
       <Tabs
@@ -72,7 +70,7 @@ export const Home = () => {
                 user={obj.user}
                 createdAt={obj.createdAt}
                 viewsCount={obj.viewsCount}
-                commentsCount={obj.commentsCount}
+                commentsCount={3}
                 tags={obj.tags}
                 isEditable={userData?._id === obj.user._id}
               />

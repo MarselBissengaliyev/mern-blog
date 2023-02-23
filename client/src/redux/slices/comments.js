@@ -9,7 +9,6 @@ export const fetchComments = createAsyncThunk("comments/fetchComments", async (i
 const initialState = {
   comments: {
     items: [],
-    commentsCount: 0,
     status: "loading",
   },
 };
@@ -35,3 +34,4 @@ const commentsSlice = createSlice({
 });
 
 export const commentsReducer = commentsSlice.reducer;
+
