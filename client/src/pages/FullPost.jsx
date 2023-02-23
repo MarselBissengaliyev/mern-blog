@@ -17,18 +17,33 @@ export const FullPost = () => {
   const { id } = useParams();
 
   React.useEffect(() => {
+    dispatch(fetchComments(id));
     axios
       .get(`/posts/${id}`)
       .then((res) => {
         setData(res.data);
         setIsLoading(false);
-        dispatch(fetchComments(id));
       })
       .catch((err) => {
         console.warn(err);
         alert("Ошибка при получении статьи");
       });
-  }, []);
+  }, []); 
+
+  React.useEffect(() => {
+    axios
+    .get(`/posts/${id}`)
+    .then((res) => {
+      const { viewsCount } = data;
+      setData({...res.data, viewsCount});
+      setIsLoading(false);
+    })
+    .catch((err) => {
+      console.warn(err);
+      alert("Ошибка при получении статьи");
+    });
+  }, [comments.items.length])
+
 
   if (isLoading) {
     return <Post isLoading={isLoading} />;
@@ -47,7 +62,7 @@ export const FullPost = () => {
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
-        commentsCount={3}
+        commentsCount={data.commentsCount}
         tags={data.tags}
         isFullPost
       >

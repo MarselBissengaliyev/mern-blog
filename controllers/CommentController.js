@@ -1,4 +1,6 @@
 import CommentModel from "../models/Comment.js";
+import PostModel from "../models/Post.js"
+
 
 export const create = async (req, res) => {
     try {
@@ -9,6 +11,11 @@ export const create = async (req, res) => {
         });
 
         const comment = await doc.save();
+        const post = await PostModel.findById(comment.post._id);
+        await post.update({
+            comments: [...post.comments, comment],
+            commentsCount: post.comments.length + 1
+        });
 
         res.json(comment);
     } catch (err) {

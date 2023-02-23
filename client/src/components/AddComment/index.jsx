@@ -7,14 +7,13 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 
 import axios from "../../axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, fetchComments } from "../../redux/slices/comments";
+import { fetchComments } from "../../redux/slices/comments";
 import { selectIsAuth } from "../../redux/slices/auth";
 
 export const Index = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
   const [text, setText] = React.useState("");
   const user= useSelector(state => state.auth.data);
