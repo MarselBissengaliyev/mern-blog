@@ -7,8 +7,10 @@ import { Post } from "../components/Post";
 import { TagsBlock } from "../components/TagsBlock";
 import { CommentsBlock } from "../components/CommentsBlock";
 import { fetchPosts, fetchTags } from "../redux/slices/posts";
+import { useParams } from "react-router-dom";
 
-export const Home = () => {
+const PostsByTag = () => {
+  const { slug } = useParams();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
   const { posts, tags } = useSelector((state) => state.posts);
@@ -17,6 +19,7 @@ export const Home = () => {
       ? localStorage.getItem("sortPostsBy")
       : "createdAt"
   );
+
 
   const isPostsLoading = posts.status === "loading";
   const isTagsLoading = tags.status === "loading";
@@ -32,8 +35,9 @@ export const Home = () => {
 
   React.useEffect(() => {
     localStorage.setItem("sortPostsBy", sortBy);
-    dispatch(fetchPosts({sortBy}));
-  }, [sortBy]);
+    localStorage.setItem('tag', slug);
+    dispatch(fetchPosts({sortBy, tag: slug}));
+  }, [sortBy, slug]);
   return (
     <>
       <Tabs
@@ -54,6 +58,7 @@ export const Home = () => {
           label="Популярные"
         />
       </Tabs>
+      <h1>Тэг - {slug}</h1>
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
@@ -104,3 +109,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default PostsByTag;

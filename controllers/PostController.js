@@ -19,8 +19,14 @@ export const getLastTags = async (req, res) => {
 }
 
 export const getAll = async (req, res) => {
+    const { sortBy, tag } = req.query;
+    console.log(sortBy);
     try {
-        const posts = await PostModel.find().sort({ [req.query.sortBy]: -1 }).populate('user').exec();
+        let posts = await PostModel
+            .find(tag ? { tags: tag } : {})
+            .sort({ [sortBy]: -1 })
+            .populate('user')
+            .exec();
 
         res.json(posts);
     } catch (err) {
