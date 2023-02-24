@@ -80,7 +80,9 @@ In this project i used MERN Stack:
 ```
 
 ## Frontend env example
-- REACT_APP_API_URL=http://localhost:4444
+```.env
+    REACT_APP_API_URL=http://localhost:4444
+```
 
 ## Social Medias
 * [GitHub](https://github.com/MarselBisengaliev)
