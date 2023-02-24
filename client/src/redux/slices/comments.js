@@ -8,20 +8,25 @@ const initialState = {
   },
   lastComments: {
     items: [],
-    status: "loading"
-  }
+    status: "loading",
+  },
 };
 
-export const fetchLastComments = createAsyncThunk("comments/fetchLastComments", async () => {
-  const { data } = await axios.get("/comments");
-  return data;
-});
+export const fetchLastComments = createAsyncThunk(
+  "comments/fetchLastComments",
+  async () => {
+    const { data } = await axios.get("/comments");
+    return data;
+  }
+);
 
-export const fetchComments = createAsyncThunk("comments/fetchComments", async (id) => {
-  const { data } = await axios.get(`/posts/${id}/comments`);
-  return data;
-});
-
+export const fetchComments = createAsyncThunk(
+  "comments/fetchComments",
+  async (id) => {
+    const { data } = await axios.get(`/posts/${id}/comments`);
+    return data;
+  }
+);
 
 const commentsSlice = createSlice({
   name: "comments",
@@ -39,20 +44,19 @@ const commentsSlice = createSlice({
       state.comments.items = [];
       state.comments.status = "error";
     },
-
-      // Получение послдених комментариев
-  [fetchLastComments.pending]: (state) => {
-    state.lastComments.items = [];
-    state.lastComments.status = "loading";
-  },
-  [fetchLastComments.fulfilled]: (state, action) => {
-    state.lastComments.items = action.payload;
-    state.lastComments.status = "loaded";
-  },
-  [fetchLastComments.rejected]: (state) => {
-    state.lastComments.items = [];
-    state.lastComments.status = "error";
-  },
+    // Получение послдених комментариев
+    [fetchLastComments.pending]: (state) => {
+      state.lastComments.items = [];
+      state.lastComments.status = "loading";
+    },
+    [fetchLastComments.fulfilled]: (state, action) => {
+      state.lastComments.items = action.payload;
+      state.lastComments.status = "loaded";
+    },
+    [fetchLastComments.rejected]: (state) => {
+      state.lastComments.items = [];
+      state.lastComments.status = "error";
+    },
   },
 });
 

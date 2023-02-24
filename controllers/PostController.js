@@ -84,7 +84,7 @@ export const remove = (req, res) => {
 
         PostModel.findOneAndDelete({
             _id: postId
-        }, (err, doc)  => {
+        }, async (err, doc)  => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -97,6 +97,8 @@ export const remove = (req, res) => {
                     message: 'Статья не найдена'
                 });
             }
+
+            await CommentModel.find({ post: doc._id }).remove();
 
             res.json({
                 success: true

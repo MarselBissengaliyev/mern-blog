@@ -26,7 +26,7 @@ export const Home = () => {
 
   React.useEffect(() => {
     dispatch(fetchTags());
-    console.log(dispatch(fetchLastComments()));
+    dispatch(fetchLastComments());
   }, []);
   
   const handleTabClick = (e) => {
@@ -36,8 +36,7 @@ export const Home = () => {
   React.useEffect(() => {
     dispatch(fetchPosts({sortBy}));
   }, [sortBy]);
-  
-  console.log(comments);
+
   return (
     <>
       <Tabs

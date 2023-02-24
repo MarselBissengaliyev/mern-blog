@@ -12,6 +12,7 @@ import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { Link } from 'react-router-dom';
 import { fetchRemovePost } from '../../redux/slices/posts';
+import { fetchLastComments } from '../../redux/slices/comments';
 
 export const Post = ({
   id,
