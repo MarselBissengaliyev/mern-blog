@@ -84,4 +84,4 @@ REACT_APP_API_URL=http://localhost:4444
 * [GitHub](https://github.com/MarselBisengaliev)
 * [Telegram](https://t.me/marsel_bisengaliev)
 * [Instagram](https://www.instagram.com/marsel_bisengaliev/)
-# [VK](https://vk.com/marsel_bisengaliev)
+* [VK](https://vk.com/marsel_bisengaliev)
