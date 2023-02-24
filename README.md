@@ -72,10 +72,12 @@ In this project i used MERN Stack:
 ```
 
 ## Backend env example
-- MONGOOSE_CONNECT_URL=YOUR URL
-- CLIENT_URL=http://localhost:3000
-- SECRET_KEY=YOUR SECRET KEY
-- PORT=4444
+```.env
+    MONGOOSE_CONNECT_URL=YOUR URL
+    CLIENT_URL=http://localhost:3000
+    SECRET_KEY=YOUR SECRET KEY
+    PORT=4444
+```
 
 ## Frontend env example
 - REACT_APP_API_URL=http://localhost:4444
