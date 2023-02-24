@@ -26,9 +26,27 @@ export const create = async (req, res) => {
   }
 };
 
+export const getLastComments = async (req, res) => {
+  try {
+      const comments = await CommentModel
+        .find()
+        .sort({ 'createdAt': -1 })
+        .limit(5)
+        .populate('user')
+        .exec();
+
+      res.json(comments);
+  } catch (err) {
+      console.log(err);
+      res.status(500).json({
+          message: "Не удалось получить статьи",
+      });
+  }
+}
+
 export const getAll = async (req, res) => {
   try {
-      let comments = await CommentModel
+      const comments = await CommentModel
           .find({ post: req.params.id })
           .sort({ 'createdAt': -1 })
           .populate('user')

@@ -57,6 +57,7 @@ app.patch('/posts/:id', checkAuth, postCreateValidation, PostController.update);
 
 app.post('/posts/:id/comments', checkAuth, CommentController.create);
 app.get('/posts/:id/comments', checkAuth, CommentController.getAll);
+app.get('/comments', CommentController.getLastComments);
 
 app.listen(process.env.PORT, (err) => {
     if (err) {

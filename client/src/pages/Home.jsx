@@ -7,6 +7,7 @@ import { Post } from "../components/Post";
 import { TagsBlock } from "../components/TagsBlock";
 import { CommentsBlock } from "../components/CommentsBlock";
 import { fetchPosts, fetchTags } from "../redux/slices/posts";
+import { fetchLastComments } from "../redux/slices/comments";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -17,15 +18,17 @@ export const Home = () => {
       ? localStorage.getItem("sortPostsBy")
       : "createdAt"
   );
-  const comments = useSelector(state => state.comments.comments.items);
+  const comments = useSelector(state => state.comments.lastComments);
 
   const isPostsLoading = posts.status === "loading";
   const isTagsLoading = tags.status === "loading";
+  const isCommentsLoading = comments.status === "loading";
 
   React.useEffect(() => {
     dispatch(fetchTags());
+    console.log(dispatch(fetchLastComments()));
   }, []);
-
+  
   const handleTabClick = (e) => {
     setSortBy(e.target.dataset.value);
   };
@@ -33,6 +36,8 @@ export const Home = () => {
   React.useEffect(() => {
     dispatch(fetchPosts({sortBy}));
   }, [sortBy]);
+  
+  console.log(comments);
   return (
     <>
       <Tabs
@@ -78,10 +83,10 @@ export const Home = () => {
           )}
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock items={tags.items} isLoading={false} />
+          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock
-            items={comments}
-            isLoading={isTagsLoading}
+            items={comments.items}
+            isLoading={isCommentsLoading}
           />
         </Grid>
       </Grid>
