@@ -60,7 +60,7 @@ const PostsByTag = () => {
       </Tabs>
       <h1>Тэг - {slug}</h1>
       <Grid container spacing={4}>
-        <Grid xs={8} item>
+        <Grid lg={8} xs={12} item>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
             isPostsLoading ? (
               <Post isLoading={true} key={index} />
@@ -83,7 +83,7 @@ const PostsByTag = () => {
             )
           )}
         </Grid>
-        <Grid xs={4} item>
+        <Grid lg={4} xs={12} item>
           <TagsBlock items={tags.items} isLoading={false} />
           <CommentsBlock
             items={[
