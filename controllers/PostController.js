@@ -1,4 +1,5 @@
 import PostModel from "../models/Post.js"
+import CommentModel from "../models/Comment.js";
 
 export const getLastTags = async (req, res) => {
     try {
@@ -67,7 +68,8 @@ export const getOne = async (req, res) => {
 
                 res.json(doc);
             }
-        ).populate('user');
+        ).populate('user')
+        .populate('comments')
     } catch (err) {
         console.log(err);
         res.status(500).json({
@@ -76,13 +78,13 @@ export const getOne = async (req, res) => {
     }
 }
 
-export const remove = async (req, res) => {
+export const remove = (req, res) => {
     try {
         const postId = req.params.id;
 
         PostModel.findOneAndDelete({
             _id: postId
-        }, (err, doc) => {
+        }, (err, doc)  => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -99,11 +101,11 @@ export const remove = async (req, res) => {
             res.json({
                 success: true
             });
-        });
+        })
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: "Не удалось получить статьи",
+            message: "Не удалось удалить статью",
         });
     }
 }

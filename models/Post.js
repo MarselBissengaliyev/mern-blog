@@ -22,7 +22,17 @@ const PostSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    imageUrl: String
+    imageUrl: String,
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ],
+    commentsCount: {
+        type: Number,
+        default: 0,
+    }
 },
     {
         timestamps: true
