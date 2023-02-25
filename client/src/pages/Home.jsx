@@ -34,7 +34,7 @@ export const Home = () => {
   };
 
   React.useEffect(() => {
-    localStorage.setItem('sortBy', sortBy);
+    localStorage.setItem('sortPostsBy', sortBy);
     dispatch(fetchPosts({sortBy}));
   }, [sortBy]);
 
