@@ -8,6 +8,7 @@ import { TagsBlock } from "../components/TagsBlock";
 import { CommentsBlock } from "../components/CommentsBlock";
 import { fetchPosts, fetchTags } from "../redux/slices/posts";
 import { useParams } from "react-router-dom";
+import { fetchLastComments } from "../redux/slices/comments";
 
 const PostsByTag = () => {
   const { slug } = useParams();
@@ -20,12 +21,16 @@ const PostsByTag = () => {
       : "createdAt"
   );
 
+  const comments = useSelector(state => state.comments.lastComments);
+
 
   const isPostsLoading = posts.status === "loading";
   const isTagsLoading = tags.status === "loading";
+  const isCommentsLoading = comments.status === "loading";
 
   React.useEffect(() => {
     dispatch(fetchTags());
+    dispatch(fetchLastComments());
   }, []);
 
   const handleTabClick = (e) => {
@@ -84,25 +89,10 @@ const PostsByTag = () => {
           )}
         </Grid>
         <Grid lg={4} xs={12} item>
-          <TagsBlock items={tags.items} isLoading={false} />
+          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock
-            items={[
-              {
-                user: {
-                  fullName: "Вася Пупкин",
-                  avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
-                },
-                text: "Это тестовый комментарий",
-              },
-              {
-                user: {
-                  fullName: "Иван Иванов",
-                  avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
-                },
-                text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
-              },
-            ]}
-            isLoading={isTagsLoading}
+            items={comments.items}
+            isLoading={isCommentsLoading}
           />
         </Grid>
       </Grid>
