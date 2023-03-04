@@ -21,7 +21,7 @@ In this project i used MERN Stack:
 ## Pages
 1. **Home**: The main page where user see the posts, he can sort them by date and popularity, and he see last 5 tags, comments.
 2. **Login**: The page where you see 2 input fields: 1) E-mail; 2) Password; If user entered fields correct the app navigate him to home page and register him like authenticated (store jwt token in localstorage).
-3. **Register**: The page where you see 3 input fields: 1) E-mail; 2) Password; 3) Fullname; If user entered fields correct in the database create new user and app navigate him to home page, in the end register him like authenticated (store jwt token in localstorage)
+3. **Register**: The page where you see 3 input fields: 1) E-mail; 2) Password; 3) Fullname; If user entered fields correct in the database create new user and app navigate him to home page, in the end register him like authenticated (store jwt token in localstorage).
 4. **Add Post**: The page where user can create a new post, there he can upload a preview image for post what he creates, set title, markdown, tags. If the user is authenticated, he can leave comments, as well as user can see comments from other users of this post.
 5. **Edit Post**: This page has the same design like the "Add Post" page, but here a user update post.
 6. **Posts by tag**: This page show to user posts by tag, he also can sort them by date and popularity.
